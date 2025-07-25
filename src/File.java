@@ -3,7 +3,7 @@
 import java.time.LocalDateTime;
 
 class File extends FileNode{
-    Private String content;
+    private String content;
 
     public File(String name,Directory parent){
         this.name = name;

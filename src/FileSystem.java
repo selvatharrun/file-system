@@ -1,58 +1,74 @@
-
 class FileSystem {
-    Private Directory root;
+    private Directory root;
 
-    public FileSystem(){
-        this.root = new Directory("",null);
+    public FileSystem() {
+        this.root = new Directory("", null);
     }
 
-    public void CreateFile(String path, String content){
+    public void CreateFile(String path, String content) {
         Directory parent = ParentDirectoryResolver(path);
         String name = nameExtractor(path);
 
-        File f = new File(name,parent);
+        File f = new File(name, parent);
         f.write(content);
         parent.add(f);
     }
 
-    public void CreateDirectory(String path){
+    public void CreateDirectory(String path) {
         Directory parent = ParentDirectoryResolver(path);
         String name = nameExtractor(path);
 
-        Directory dir = new Directory(name,parent);
+        Directory dir = new Directory(name, parent);
         parent.add(dir);
     }
 
-    public void RemoveFile(String path){
+    public void RemoveFile(String path) {
         Directory parent = ParentDirectoryResolver(path);
         String name = nameExtractor(path);
 
         parent.remove(name);
     }
 
-    public void list(String path){
+    public void List(String path) {
         Directory parent = DirectoryResolver(path);
 
-        for(FileNode node:parent.list()){
+        for (FileNode node : parent.list()) {
             System.out.println(node.getName());
         }
     }
-    private Directory DirectoryResolver(String path){
 
-    }
-    private Directory ParentDirectoryResolver(String path){
+    private Directory DirectoryResolver(String path) {
         path = pathResolver.Normalize(path);
-        int index = 0;
-        if (path != null) {
-            index = path.lastIndexOf('/');
-            path = path.substring(0,index);
+        assert path != null;
+        String[] parts = path.split("/");
+
+        Directory current = root;
+
+        for (String part : parts) {
+            if (part == null || part.isEmpty()) continue; // fixed: part.equals(null) → part == null
+            FileNode child = current.getChild(part);
+
+            if (child == null || !(child instanceof Directory)) {
+                throw new RuntimeException("invalid path" + path);
+            }
+
+            current = (Directory) child;
         }
-        Directory dir = new Directory();
+
+        return current;
     }
 
-    private String nameExtractor(String path){
+    private Directory ParentDirectoryResolver(String path) {
+        path = pathResolver.Normalize(path);
         int index = path.lastIndexOf('/');
-        String file_name = path.substring(index,path.length()-1);
-        return file_name;
+
+        if (index <= 0) return root;
+        String parentPath = path.substring(0, index);
+        return DirectoryResolver(parentPath);
+    }
+
+    private String nameExtractor(String path) {
+        int index = path.lastIndexOf('/');
+        return path.substring(index + 1); // +1 to skip the slash itself
     }
 }
