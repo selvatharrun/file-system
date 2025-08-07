@@ -116,32 +116,24 @@ Listing /docs again:
 projects
 ```
 
-💡 Design Goals
+## 💡 Design Goals
 Keep in-memory tree fast and accurate
-
 Use MySQL as persistence layer (survives reboot)
-
 Keep modular DAO to support future migration (e.g., to PostgreSQL or file-based DB)
-
 Designed for extensibility: add cd, search, or mv with ease
 
-🔮 Future Enhancements
+## 🔮 Future Enhancements
  cd command with current working directory context
-
  Move (mv) or rename nodes
-
  Full-text search
-
  Caching or syncing strategy
-
  GUI file explorer interface
-
  REST API for remote access
-
-🤝 Contributing
+ 
+## 🤝 Contributing
 Feel free to fork, improve, or open issues. PRs are welcome!
 
-🪪 License
+## 🪪 License
 This project is open-source under the MIT License.
 
 ```yaml
