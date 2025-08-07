@@ -14,18 +14,19 @@ A modular, data-structure-oriented file system implementation in Java, with supp
 
 ## 🏗️ Project Structure
 
-- src/
-- ├── FileSystem.java # Core operations and tree management
-- ├── FileNode.java # Abstract base node
-- ├── Directory.java # Represents folders
-- ├── File.java # Represents file nodes
-- ├── pathResolver.java # Normalizes and resolves paths
-- ├── Main.java # Entry point / CLI tester
-- └── db/
-- ├── DatabaseConnection.java # JDBC connector
-- ├── FileSystemEntity.java # DB model
-- └── FileSystemDAO.java # DAO for DB access
-
+```
+src/
+├── FileSystem.java # Core operations and tree management
+├── FileNode.java # Abstract base node
+├── Directory.java # Represents folders
+├── File.java # Represents file nodes
+├── pathResolver.java # Normalizes and resolves paths
+├── Main.java # Entry point / CLI tester
+└── db/
+├── DatabaseConnection.java # JDBC connector
+├── FileSystemEntity.java # DB model
+└── FileSystemDAO.java # DAO for DB access
+```
 
 
 ---
