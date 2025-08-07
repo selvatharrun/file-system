@@ -1,6 +1,6 @@
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
+
 
 class Directory extends FileNode {
     List<FileNode> children;
@@ -30,6 +30,20 @@ class Directory extends FileNode {
         }
         return null;
     }
+
+    public String getPath() {
+        if (parent == null) {
+            return "/";
+        }
+
+        String parentPath = parent.getPath();
+        if (parentPath.equals("/")) {
+            return "/" + name;
+        } else {
+            return parentPath + "/" + name;
+        }
+    }
+
 
     public void add(FileNode node) {
         children.add(node);

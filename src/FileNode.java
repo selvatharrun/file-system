@@ -10,7 +10,7 @@ public class FileNode {
         return name;
     }
 
-    public Directory getParent(Directory parent) {
-        return (parent == null ? "" : parent.getPath())+ "/" + name;
+    public Directory getParent() {
+        return parent;
     }
 }
