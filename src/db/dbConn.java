@@ -1,0 +1,15 @@
+package db;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class dbConn {
+    private static final String url = "jdbc:mysql://localhost:3306/your_database";
+    private static final String name = "root";
+    private static final String pwd = "stharrun007";
+
+    public static Connection getConnection() throws SQLException{
+        return DriverManager.getConnection(url, name, pwd);
+    }
+}
