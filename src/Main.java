@@ -1,12 +1,20 @@
 public class Main {
     public static void main(String[] args) {
-        int x = 5;
-        int y = 10;
-        int sum = add(x, y);  // <— put breakpoint here
-        System.out.println("Sum: " + sum);
-    }
+        FileSystem fs = new FileSystem();
 
-    static int add(int a, int b) {
-        return a + b;
+        System.out.println("Creating structure...");
+        fs.CreateDirectory("/docs");
+        fs.CreateDirectory("/docs/projects");
+        fs.CreateFile("/docs/projects/todo.txt", "Finish MySQL integration");
+        fs.CreateFile("/docs/readme.txt", "This is the docs folder");
+
+        System.out.println("\nListing /docs:");
+        fs.List("/docs");
+
+        System.out.println("\nRemoving /docs/readme.txt");
+        fs.RemoveFile("/docs/readme.txt");
+
+        System.out.println("\nListing /docs again:");
+        fs.List("/docs");
     }
 }

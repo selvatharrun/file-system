@@ -10,6 +10,14 @@ class FileSystem {
 
     public FileSystem() {
         this.root = new Directory("", null);
+        if (dao.getByNameAndParentId("", null) == null) {
+            FileSystemEntity rootEntity = new FileSystemEntity();
+            rootEntity.setName("");
+            rootEntity.setType("FOLDER");
+            rootEntity.setParentId(null); // root has no parent
+
+            dao.create(rootEntity);
+        }
     }
 
     public void CreateFile(String path, String content) {
@@ -103,6 +111,10 @@ class FileSystem {
     }
 
     private Integer getNodeId(FileNode node) {
+        if (node.getParent() == null) {
+            // This is root
+            return 1; // Hardcoded ID of root in DB
+        }
         String name = node.getName();
         Directory parent = node.getParent();
 
