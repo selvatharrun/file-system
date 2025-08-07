@@ -23,9 +23,9 @@ src/
 ├── pathResolver.java # Normalizes and resolves paths
 ├── Main.java # Entry point / CLI tester
 └── db/
-├── DatabaseConnection.java # JDBC connector
-├── FileSystemEntity.java # DB model
-└── FileSystemDAO.java # DAO for DB access
+    ├── DatabaseConnection.java # JDBC connector
+    ├── FileSystemEntity.java # DB model
+    └── FileSystemDAO.java # DAO for DB access
 ```
 
 
